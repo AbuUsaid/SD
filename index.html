@@ -4,11 +4,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shutdown App</title>
+    <title>⌚Shutdown Scheduler</title>
+
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1>Shutdown App</h1>
-    <label for="timer">Shutdown in (minutes):</label>
+    <h1>Welcome to the Shutdown Scheduler!</h1>
+    <p>
+      You can easily schedule your computer to shut down, restart, or sleep
+      after a set number of minutes.<br />Just enter the time and click the
+      button for your desired action. <br />
+      If you change your mind, you can cancel any scheduled action anytime.
+      Enjoy!
+    </p>
+    <label for="timer">Schedule Action in (minutes):</label>
     <input type="number" id="timer" min="1" />
     <button id="shutdown-button">Schedule Shutdown</button>
     <button id="restart-button">Schedule Restart</button>
@@ -17,4 +26,11 @@
     <h2 id="countdown-display"></h2>
     <script src="renderer.js"></script>
   </body>
+
+  <footer>
+    <p>
+      Made with ❤️ by
+      <a href="https://github.com/AbuUsaid" target="_blank">AbuUsaid</a>.
+    </p>
+  </footer>
 </html>

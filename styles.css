@@ -1,0 +1,89 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    color: #4CAF50;
+}
+
+label {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+input[type="number"] {
+    padding: 10px;
+    font-size: 16px;
+    width: 100px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049; /* Darker green */
+}
+
+h2 {
+    margin-top: 20px;
+    font-size: 20px;
+    color: #555;
+}
+
+/* Style for the cancel button */
+
+#cancel-button {
+    background-color: #f44336; /* Lighter red */
+}
+
+#cancel-button:hover {
+    background-color: #d32f2f; /* Original light red on hover */
+}
+
+
+/*Style for the footer*/
+
+footer {
+    margin-top: 20px;
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+}
+
+footer a {
+    color: #4CAF50; /* Link color */
+    text-decoration: none; /* Remove underline */
+}
+
+footer a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+
+p {
+    text-align: center; /* Center the text */
+    margin: 20px 0; /* Add some margin above and below */
+    font-size: 16px; /* Adjust font size for readability */
+    line-height: 1.5; /* Increase line height for better spacing */
+    color: #333; /* Set text color */
+}
