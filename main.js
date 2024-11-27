@@ -1,9 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const { exec } = require('child_process');
 
-// let shutdownTimer;
-let countdownInterval;
-
 function createWindow() {
   const win = new BrowserWindow({
     width: 800,
@@ -55,13 +52,31 @@ ipcMain.on('schedule-restart', (event, minutes) => {
   });
 });
 
+// Listen for the schedule sleep event
+ipcMain.on('schedule-sleep', (event, minutes) => {
+  const seconds = minutes * 60;
+  // Use timeout to wait before executing the sleep command
+  setTimeout(() => {
+    exec(
+      'rundll32.exe powrprof.dll,SetSuspendState 0,1,0',
+      (error, stdout, stderr) => {
+        if (error) {
+          console.error(`Error scheduling sleep: ${error}`);
+          return;
+        }
+        console.log(`Sleep scheduled in ${minutes} minutes: ${stdout}`);
+      }
+    );
+  }, seconds * 1000); // Convert seconds to milliseconds
+});
+
 // Listen for the cancel shutdown event
 ipcMain.on('cancel-shutdown', (event) => {
   exec('shutdown /a', (error, stdout, stderr) => {
     if (error) {
-      console.error(`Error canceling shutdown: ${error}`);
+      console.error(`Error canceling shutdown/restart/sleep: ${error}`);
       return;
     }
-    console.log(`Shutdown canceled: ${stdout}`);
+    console.log(`Shutdown/Restart/Sleep canceled: ${stdout}`);
   });
 });

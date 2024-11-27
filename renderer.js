@@ -26,6 +26,18 @@ document.getElementById('restart-button').addEventListener('click', () => {
   }
 });
 
+document.getElementById('sleep-button').addEventListener('click', () => {
+  const timerValue = document.getElementById('timer').value;
+  if (timerValue) {
+    const minutes = parseInt(timerValue);
+    const seconds = minutes * 60;
+    ipcRenderer.send('schedule-sleep', timerValue);
+    startCountdown(seconds);
+  } else {
+    alert('Please enter a valid time in minutes.');
+  }
+});
+
 document.getElementById('cancel-button').addEventListener('click', () => {
   ipcRenderer.send('cancel-shutdown');
   clearInterval(countdownInterval);
@@ -39,7 +51,7 @@ function startCountdown(seconds) {
     if (remainingTime <= 0) {
       clearInterval(countdownInterval);
       document.getElementById('countdown-display').innerText =
-        'Shutdown in progress...';
+        'Action in progress...';
     } else {
       const minutes = Math.floor(remainingTime / 60);
       const secs = remainingTime % 60;
