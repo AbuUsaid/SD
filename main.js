@@ -1,13 +1,15 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const { exec } = require('child_process');
 
+let shutdownTimer;
+
 function createWindow() {
   const win = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
       nodeIntegration: true,
-      contextIsolation: false, //important for using ipcRenderer
+      contextIsolation: false,
     },
   });
 
@@ -28,13 +30,25 @@ app.on('activate', () => {
   }
 });
 
-// Listen for the shutdown event
-ipcMain.on('shutdown-pc', (event) => {
-  exec('shutdown /s /t 0', (error, stdout, stderr) => {
+// Listen for the schedule shutdown event
+ipcMain.on('schedule-shutdown', (event, minutes) => {
+  const seconds = minutes * 60;
+  exec(`shutdown /s /t ${seconds}`, (error, stdout, stderr) => {
     if (error) {
-      console.error(`Error shutting down: ${error}`);
+      console.error(`Error scheduling shutdown: ${error}`);
       return;
     }
-    console.log(`Shutdown command executed: ${stdout}`);
+    console.log(`Shutdown scheduled in ${minutes} minutes: ${stdout}`);
+  });
+});
+
+// Listen for the cancel shutdown event
+ipcMain.on('cancel-shutdown', (event) => {
+  exec('shutdown /a', (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error canceling shutdown: ${error}`);
+      return;
+    }
+    console.log(`Shutdown canceled: ${stdout}`);
   });
 });

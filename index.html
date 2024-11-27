@@ -8,7 +8,11 @@
   </head>
   <body>
     <h1>Shutdown App</h1>
-    <button id="shutdown-button">Shutdown PC</button>
+    <label for="timer">Shutdown in (minutes):</label>
+    <input type="number" id="timer" min="1" />
+    <button id="shutdown-button">Schedule Shutdown</button>
+    <button id="cancel-button">Cancel Shutdown</button>
+
     <script src="renderer.js"></script>
   </body>
 </html>
