@@ -1,7 +1,8 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const { exec } = require('child_process');
 
-let shutdownTimer;
+// let shutdownTimer;
+let countdownInterval;
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -39,6 +40,18 @@ ipcMain.on('schedule-shutdown', (event, minutes) => {
       return;
     }
     console.log(`Shutdown scheduled in ${minutes} minutes: ${stdout}`);
+  });
+});
+
+// Listen for the schedule restart event
+ipcMain.on('schedule-restart', (event, minutes) => {
+  const seconds = minutes * 60;
+  exec(`shutdown /r /t ${seconds}`, (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error scheduling restart: ${error}`);
+      return;
+    }
+    console.log(`Restart scheduled in ${minutes} minutes: ${stdout}`);
   });
 });
 
