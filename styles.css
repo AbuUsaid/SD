@@ -13,6 +13,10 @@ h1 {
     color: #4CAF50;
 }
 
+.heading{
+    text-shadow: -1px -1px 1px rgba(255,255,255,.1), 1px 1px 1px rgba(0,0,0,.5);
+}
+
 label {
     margin: 10px 0;
     font-size: 18px;
