@@ -1,6 +1,6 @@
 # Shutdown Scheduler
 
-Electron.js application that allows users to schedule their computer to shut down, restart, or sleep after a specified number of minutes. The application provides an easy-to-use interface for scheduling actions and canceling them if needed.
+Desktop application that allows users to schedule their computer to shut down, restart, or sleep after a specified number of minutes. The application provides an easy-to-use interface for scheduling actions and canceling them if needed.
 
 ## UI draft
 
