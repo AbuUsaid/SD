@@ -1,15 +1,20 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, Menu, ipcMain } = require('electron');
 const { exec } = require('child_process');
 
 function createWindow() {
   const win = new BrowserWindow({
     width: 800,
     height: 600,
+    frame: true, // Keep the frame to have minimize, maximize, and close buttons
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
     },
   });
+
+  // Create a custom menu with no options
+  const menu = Menu.buildFromTemplate([]);
+  Menu.setApplicationMenu(menu); // Set the custom menu
 
   win.loadFile('index.html');
 }
