@@ -1,5 +1,7 @@
 body {
-    font-family: Arial, sans-serif;
+    /* font-family: Arial, sans-serif; */
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+
     background-color: #f4f4f4;
     color: #333;
     margin: 0;
@@ -29,11 +31,18 @@ h1 {
 label {
     margin: 10px 0;
     font-size: 18px;
+    color: yellow;
 }
+
+#timer {
+    background-color: lightyellow ;
+    font-size: 20px;
+}
+
 
 input[type="number"] {
     padding: 10px;
-    font-size: 16px;
+    font-size: 18px;
     width: 100px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
@@ -98,5 +107,5 @@ p {
     margin: 20px 0; /* Add some margin above and below */
     font-size: 16px; /* Adjust font size for readability */
     line-height: 1.5; /* Increase line height for better spacing */
-    color: #333; /* Set text color */
+    color: whitesmoke; /* Set text color */
 }
