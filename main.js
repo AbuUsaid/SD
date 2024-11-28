@@ -1,6 +1,8 @@
 const { app, BrowserWindow, Menu, ipcMain } = require('electron');
 const { exec } = require('child_process');
 
+let sleepTimeoutId;
+
 function createWindow() {
   const win = new BrowserWindow({
     width: 800,
@@ -61,7 +63,8 @@ ipcMain.on('schedule-restart', (event, minutes) => {
 ipcMain.on('schedule-sleep', (event, minutes) => {
   const seconds = minutes * 60;
   // Use timeout to wait before executing the sleep command
-  setTimeout(() => {
+  sleepTimeoutId = setTimeout(() => {
+    //Store the timeout ID
     exec(
       'rundll32.exe powrprof.dll,SetSuspendState 0,1,0',
       (error, stdout, stderr) => {
@@ -84,4 +87,10 @@ ipcMain.on('cancel-shutdown', (event) => {
     }
     console.log(`Shutdown/Restart/Sleep canceled: ${stdout}`);
   });
+
+  // Clear the sleep timeout if it exists
+  if (sleepTimeoutId) {
+    clearTimeout(sleepTimeoutId);
+    sleepTimeoutId = null; // Reset the timeout ID
+  }
 });
