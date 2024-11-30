@@ -103,9 +103,29 @@ footer a:hover {
 
 
 p {
-    text-align: center; /* Center the text */
-    margin: 20px 0; /* Add some margin above and below */
-    font-size: 16px; /* Adjust font size for readability */
-    line-height: 1.5; /* Increase line height for better spacing */
-    color: whitesmoke; /* Set text color */
+    text-align: center; 
+    margin: 20px 0; 
+    font-size: 16px; 
+    line-height: 1.5; 
+    color: whitesmoke; 
+}
+
+
+/* Custom Scrollbar Styles */
+::-webkit-scrollbar {
+    width: 12px; 
+}
+
+::-webkit-scrollbar-track {
+    background: #ebb0f8; 
+    border-radius: 1px; 
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to right, #EC6EAD, #3494E6); 
+    border-radius: 5px; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to right, #EC6EAD, #45a049); 
 }
