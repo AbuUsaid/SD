@@ -21,7 +21,8 @@ body {
 
 
 h1 {
-    color: #4CAF50;
+    color: greenyellow;
+    
 }
 
 .heading{
@@ -35,7 +36,7 @@ label {
 }
 
 #timer {
-    background-color: lightyellow ;
+    background-color: #ffffff ;
     font-size: 20px;
 }
 
@@ -89,11 +90,11 @@ footer {
     padding: 10px;
     text-align: center;
     font-size: 14px;
-    color: #555;
+    color: whitesmoke;
 }
 
 footer a {
-    color: #4CAF50; /* Link color */
+    color: greenyellow; /* Link color */
     text-decoration: none; /* Remove underline */
 }
 
@@ -128,4 +129,45 @@ p {
 
 ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(to right, #EC6EAD, #45a049); 
+}
+
+/* Style for the dropdown menu */
+select {
+    padding: 10px;
+    font-size: 18px;
+    width: 200px; /* Adjust width as needed */
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #ffffff; /* White background for contrast */
+    color: #333; /* Text color */
+    appearance: none; /* Remove default arrow */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><polygon points="0,0 20,0 10,10" fill="%23444444"/></svg>'); /* Custom arrow */
+    background-repeat: no-repeat;
+    background-position: right 10px center; /* Position the arrow */
+    background-size: 12px; /* Size of the arrow */
+    
+}
+
+/* Style for the dropdown menu on focus */
+select:focus {
+    border-color: #4CAF50; /* Change border color on focus */
+    outline: none; /* Remove default outline */
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); /* Subtle shadow effect */
+}
+
+/* Style for the dropdown menu options */
+select option {
+    background-color: #ffffff; /* White background for options */
+    color: #333; /* Text color for options */
+}
+
+/* Hover effect for options */
+select option:hover {
+    background-color: #f0f0f0; /* Light gray on hover */
+}
+
+/* Active option style */
+select option:active {
+    background-color: #e0e0e0; /* Slightly darker gray when selected */
 }
