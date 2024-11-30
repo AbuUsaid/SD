@@ -2,36 +2,32 @@ const { ipcRenderer } = require('electron');
 
 let countdownInterval;
 
-document.getElementById('shutdown-button').addEventListener('click', () => {
+document.getElementById('action').addEventListener('change', (event) => {
+  const selectedAction = event.target.value;
   const timerValue = document.getElementById('timer').value;
-  if (timerValue) {
-    const minutes = parseInt(timerValue);
-    const seconds = minutes * 60;
-    ipcRenderer.send('schedule-shutdown', timerValue);
-    startCountdown(seconds);
-  } else {
-    alert('Please enter a valid time in minutes.');
-  }
+
+  // dislay start button only after selection
+  document.getElementById('start-button').style.display =
+    selectedAction && timerValue ? 'inline-block' : 'none';
 });
 
-document.getElementById('restart-button').addEventListener('click', () => {
+document.getElementById('start-button').addEventListener('click', () => {
+  const selectedAction = document.getElementById('action').value;
   const timerValue = document.getElementById('timer').value;
-  if (timerValue) {
-    const minutes = parseInt(timerValue);
-    const seconds = minutes * 60;
-    ipcRenderer.send('schedule-restart', timerValue);
-    startCountdown(seconds);
-  } else {
-    alert('Please enter a valid time in minutes.');
-  }
-});
 
-document.getElementById('sleep-button').addEventListener('click', () => {
-  const timerValue = document.getElementById('timer').value;
   if (timerValue) {
     const minutes = parseInt(timerValue);
     const seconds = minutes * 60;
-    ipcRenderer.send('schedule-sleep', timerValue);
+
+    // Send the appropriate IPC message based on the selected action
+    if (selectedAction === 'shutdown') {
+      ipcRenderer.send('schedule-shutdown', timerValue);
+    } else if (selectedAction === 'restart') {
+      ipcRenderer.send('schedule-restart', timerValue);
+    } else if (selectedAction === 'sleep') {
+      ipcRenderer.send('schedule-sleep', timerValue);
+    }
+
     startCountdown(seconds);
   } else {
     alert('Please enter a valid time in minutes.');
@@ -42,6 +38,9 @@ document.getElementById('cancel-button').addEventListener('click', () => {
   ipcRenderer.send('cancel-shutdown');
   clearInterval(countdownInterval);
   document.getElementById('countdown-display').innerText = ''; // Clear countdown display
+
+  document.getElementById('start-button').style.display = 'none'; // Hide the Start button
+  document.getElementById('action').value = ''; // Reset the dropdown
 });
 
 function startCountdown(seconds) {
