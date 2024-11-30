@@ -42,6 +42,10 @@ document.getElementById('cancel-button').addEventListener('click', () => {
   document.getElementById('start-button').style.display = 'none'; // Hide the Start button
   document.getElementById('action').value = ''; // Reset the dropdown
   document.getElementById('cancel-button').style.display = 'none'; // Hide the Cancel button
+
+  // Show the timer input and label again
+  document.getElementById('timer').style.display = 'inline-block';
+  document.querySelector('label[for="timer"]').style.display = 'inline-block';
 });
 
 function startCountdown(seconds) {
@@ -49,6 +53,13 @@ function startCountdown(seconds) {
 
   // Show the Cancel button when the countdown starts
   document.getElementById('cancel-button').style.display = 'inline-block';
+
+  // Hide the timer input and label when the countdown starts
+  document.getElementById('timer').style.display = 'none';
+  document.querySelector('label[for="timer"]').style.display = 'none';
+
+  // Hide the Start button when the countdown starts
+  document.getElementById('start-button').style.display = 'none';
 
   countdownInterval = setInterval(() => {
     if (remainingTime <= 0) {
