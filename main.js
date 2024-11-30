@@ -7,6 +7,7 @@ function createWindow() {
   const win = new BrowserWindow({
     width: 800,
     height: 600,
+    icon: __dirname + './icon/timepiece-timer.ico',
     frame: true, // Keep the frame to have minimize, maximize, and close buttons
     webPreferences: {
       nodeIntegration: true,
