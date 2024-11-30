@@ -41,16 +41,21 @@ document.getElementById('cancel-button').addEventListener('click', () => {
 
   document.getElementById('start-button').style.display = 'none'; // Hide the Start button
   document.getElementById('action').value = ''; // Reset the dropdown
+  document.getElementById('cancel-button').style.display = 'none'; // Hide the Cancel button
 });
 
 function startCountdown(seconds) {
   let remainingTime = seconds;
+
+  // Show the Cancel button when the countdown starts
+  document.getElementById('cancel-button').style.display = 'inline-block';
 
   countdownInterval = setInterval(() => {
     if (remainingTime <= 0) {
       clearInterval(countdownInterval);
       document.getElementById('countdown-display').innerText =
         'Action in progress...';
+      document.getElementById('cancel-button').style.display = 'none'; // Hide the Cancel button after action starts
     } else {
       const minutes = Math.floor(remainingTime / 60);
       const secs = remainingTime % 60;
