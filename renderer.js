@@ -2,6 +2,14 @@ const { ipcRenderer } = require('electron');
 
 let countdownInterval;
 
+// Retrieve the last timer value from localStorage and set it as the default value
+document.addEventListener('DOMContentLoaded', () => {
+  const lastTimerValue = localStorage.getItem('lastTimerValue');
+  if (lastTimerValue) {
+    document.getElementById('timer').value = lastTimerValue; // Set the input value
+  }
+});
+
 document.getElementById('action').addEventListener('change', (event) => {
   const selectedAction = event.target.value;
   const timerValue = document.getElementById('timer').value;
@@ -18,6 +26,9 @@ document.getElementById('start-button').addEventListener('click', () => {
   if (timerValue) {
     const minutes = parseInt(timerValue);
     const seconds = minutes * 60;
+
+    // Save the timer value to localStorage
+    localStorage.setItem('lastTimerValue', timerValue);
 
     // Send the appropriate IPC message based on the selected action
     if (selectedAction === 'shutdown') {
