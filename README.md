@@ -13,7 +13,7 @@ You can download the Shutdown Scheduler application from the following link:
 
 ## App in Action
 
-![App Demo](./screenshot/shutdown.gif)
+![App Demo](./screenshot/ShudownScheduler.gif)
 
 ## Features
 
