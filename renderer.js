@@ -5,14 +5,28 @@ let countdownInterval;
 // Retrieve the last timer value from localStorage and set it as the default value
 document.addEventListener('DOMContentLoaded', () => {
   const lastTimerValue = localStorage.getItem('lastTimerValue');
+  const lastActionValue = localStorage.getItem('lastActionValue');
+
   if (lastTimerValue) {
     document.getElementById('timer').value = lastTimerValue; // Set the input value
+  }
+
+  if (lastActionValue) {
+    document.getElementById('action').value = lastActionValue; // Set the dropdown value
+  }
+
+  // Check if both lastTimerValue and lastActionValue are present
+  if (lastTimerValue && lastActionValue) {
+    document.getElementById('start-button').style.display = 'inline-block'; // Show Start button
   }
 });
 
 document.getElementById('action').addEventListener('change', (event) => {
   const selectedAction = event.target.value;
   const timerValue = document.getElementById('timer').value;
+
+  // Save the selected action to localStorage
+  localStorage.setItem('lastActionValue', selectedAction); // Save action
 
   // dislay start button only after selection
   document.getElementById('start-button').style.display =
@@ -53,6 +67,9 @@ document.getElementById('cancel-button').addEventListener('click', () => {
   document.getElementById('start-button').style.display = 'none'; // Hide the Start button
   document.getElementById('action').value = ''; // Reset the dropdown
   document.getElementById('cancel-button').style.display = 'none'; // Hide the Cancel button
+
+  // Clear the last action from localStorage
+  localStorage.removeItem('lastActionValue'); // Clear action
 
   // Show the timer input and label again
   document.getElementById('timer').style.display = 'inline-block';
