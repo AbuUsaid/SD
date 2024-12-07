@@ -69,7 +69,7 @@ document.getElementById('cancel-button').addEventListener('click', () => {
   document.getElementById('cancel-button').style.display = 'none'; // Hide the Cancel button
 
   // Clear the last action from localStorage
-  localStorage.removeItem('lastActionValue'); // Clear action
+  // localStorage.removeItem('lastActionValue'); // Clear action
 
   // Show the timer input and label again
   document.getElementById('timer').style.display = 'inline-block';
